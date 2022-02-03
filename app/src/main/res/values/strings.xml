@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">SignUpForm</string>
+
+    <string name="name_title">Name</string>
     <string name="name_hint">Enter name</string>
+
+    <string name="email_title">Email</string>
     <string name="email_hint">Enter email</string>
+
+    <string name="password_title">Password</string>
     <string name="password_hint">Enter password</string>
+    <string name="password_confirm_title">Confirm Password</string>
     <string name="password_confirm_hint">Re-enter password</string>
+
     <string name="save_button">Save</string>
 </resources>
