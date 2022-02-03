@@ -18,9 +18,40 @@ class FormActivity : AppCompatActivity() {
         val enterPasswordConfirm = findViewById<EditText>(R.id.editTextPasswordConfirm)
         val saveButton = findViewById<Button>(R.id.submitFormButton)
 
-        // define save button click behavior
+        // on save button click, display a welcome toast if all fields are entered and passwords match
         saveButton.setOnClickListener {
-            Toast.makeText(this@FormActivity, "Making a toast!", Toast.LENGTH_SHORT).show()
+            var allFieldsEntered = true
+            var passwordsMatch = true
+
+            // check for blank inputs
+            if (enterName.text.isBlank()) { // disallow only whitespace names
+                allFieldsEntered = false
+                enterName.error = "name is required"
+            }
+            if (enterEmail.text.isBlank()) { // disallow only whitespace emails
+                allFieldsEntered = false
+                enterEmail.error = "email is required"
+            }
+            if (enterPassword.text.isEmpty()) { // allow only whitespace passwords
+                allFieldsEntered = false
+                enterPassword.error = "password is required"
+            }
+            if (enterPasswordConfirm.text.isEmpty()) { // allow only whitespace passwords
+                allFieldsEntered = false
+                enterPasswordConfirm.error = "re-enter password"
+            }
+
+            // check for mismatching passwords
+            if (enterPassword.text.toString() != enterPasswordConfirm.text.toString()) {
+                passwordsMatch = false
+                enterPasswordConfirm.error = "passwords do not match"
+            }
+
+            // make welcome toast if all fields were entered and passwords match
+            if (allFieldsEntered && passwordsMatch) {
+                val toastMessage = "Welcome, ${enterName.text}, to the SignUpForm App!"
+                Toast.makeText(this@FormActivity, toastMessage, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
